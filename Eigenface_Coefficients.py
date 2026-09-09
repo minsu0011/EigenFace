@@ -1,11 +1,14 @@
 import numpy as np
 import cv2
+import os
+from pathlib import Path
+DATA_ROOT = Path(os.environ.get('EIGENFACE_DATA_DIR', 'data/local'))
 imageList = []
 image_7070 = []
 
 #1. Image 불러오기
 for i in range(1, 3001) :
-    imageList.append(r"C:\Users\minsu\Documents\euge\lfw_funneled\image (" + str(i) + ").jpg") #로컬 이미지 파일을 imageList에 저장
+    imageList.append(str(DATA_ROOT / 'lfw_funneled' / ('image (' + str(i) + ').jpg')))
 
 #2. Image 가공
 for image_path in imageList: 
@@ -38,7 +41,7 @@ cv2.destroyAllWindows()
 
 #5. Coefficients 계산 및 Image 재구성
 coefficients = np.dot(eigenfaces, A.T)  #eigenface와 A.T를 행렬곱하여 coefficient 계산
-reconstructed_images = np.dot(coefficients.T, eigenfaces) + mean_vector  #coefficients 와 eigenfaces를 선형결합하고 mean_vector을 더해서 재구성된 이미지 matrix 만들기
+reconstructed_images = np.dot(coefficients.T, eigenfaces) + mean_vector
 reconstructed_images = np.asarray(reconstructed_images, dtype = np.uint8)  #이미지 matrix를 실수 -> 정수로 변환
 for i in range(0, 5):
     cv2.imshow("recontructed_images", reconstructed_images[i].reshape(70,70))  #이미지 matirx 중 특정한 image vector를 70x70 matrix로 변환하여 출력

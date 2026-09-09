@@ -1,10 +1,13 @@
 import numpy as np
 import cv2
+import os
+from pathlib import Path
+DATA_ROOT = Path(os.environ.get('EIGENFACE_DATA_DIR', 'data/local'))
 imageList1 = []
 image_70701 = []
 people = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 for i in range(0, 10) :
-    imageList1.append(r"C:\Users\minsu\Documents\euge\dis\1\image " + people[i] + ".jpg")  #로컬 이미지 파일을 imageList1에 저장
+    imageList1.append(str(DATA_ROOT / 'dis' / '1' / ('image ' + people[i] + '.jpg')))
 for image_path1 in imageList1: 
     image_color1 = cv2.imread(image_path1)  #해당 경로의 이미지 불러오기
     image_gray1 = cv2.cvtColor(image_color1, cv2.COLOR_BGR2GRAY)  #이미지 흑백화하기
@@ -35,7 +38,7 @@ cv2.destroyAllWindows()
 imageList2 = []
 image_70702 = []
 for i in range(1, 11) :
-    imageList2.append(r"C:\Users\minsu\Documents\euge\dis\2\image (" + str(i) + ").jpg")  #로컬 이미지 파일 경로를 imageList2에 저장
+    imageList2.append(str(DATA_ROOT / 'dis' / '2' / ('image (' + str(i) + ').jpg')))
 for image_path2 in imageList2:
     image_color2 = cv2.imread(image_path2)  #해당 경로의 이미지 불러오기
     image_gray2 = cv2.cvtColor(image_color2, cv2.COLOR_BGR2GRAY)  #이미지 흑백화하기
