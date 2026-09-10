@@ -1,4 +1,5 @@
-# Linear algebra and validation
-X는 한 행이 하나의 crop인 행렬입니다. 평균 μ를 뺀 Xc=UΣVᵀ에서 기저 E를 선택해 C=Xc Eᵀ, 복원 Xhat=C E+μ를 계산합니다. Recognition은 같은 μ/E로 query를 투영한 뒤 coefficient 거리로 참조 영상을 고릅니다.
-tests/test_core.py는 원본 Recognition source의 수치 assignment를 추출해 synthetic crop으로 실행합니다. GUI/파일 loader/실제 얼굴 일반화는 검증하지 않습니다. 행렬 자체를 검사하는 테스트를 실제 인식률로 표시하지 않습니다.
+# 얼굴을 계수로 표현하기
 
+한 행이 하나의 crop인 행렬 X에서 평균 μ를 빼고 Xc=UΣVᵀ로 분해합니다. 선택한 기저 E에 대해 C=Xc Eᵀ를 계산하고 Xhat=C E+μ로 복원합니다. 질의도 같은 평균·기저에 투영한 뒤 계수의 거리로 참조 영상을 선택합니다.
+
+`tests/test_core.py`는 합성 crop으로 수치 연산을 확인합니다. GUI·이미지 로딩·실제 얼굴 일반화는 별도이며 이 테스트를 인식률로 해석하지 않습니다.
