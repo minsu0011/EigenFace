@@ -25,3 +25,5 @@ python Eigenface_Recognition.py
 70×70 고정 crop을 사용하므로 정렬·조명 변화에 민감합니다. 사용권을 확보한 이미지를 사용하세요.
 
 [알고리즘 노트](docs/implementation.md) · [출처](ATTRIBUTION.md)
+
+[전체 문서 안내](docs/README.md)
